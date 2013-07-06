@@ -90,10 +90,6 @@ function Dude:update()
 
 	self.body:setAwake(true)
 
-	print("self.cameraX" .. tostring(self.cameraX))
-	print("curX" .. tostring(curX))
-	print("self.cameraY" .. tostring(self.cameraY))
-	print("curY" .. tostring(curY))
 	self.camera_prop:setLoc(curX+200, curY+100)
 end
 
