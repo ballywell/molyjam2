@@ -16,10 +16,25 @@ world:start()
 layer:setBox2DWorld(world)
 
 worldBody = world:addBody(MOAIBox2DBody.STATIC)
-fixture = worldBody:addRect(-500, 15, 500, 20)
+fixture = worldBody:addRect(-500, 115, 500, 120)
 fixture:setFilter(0x02)
 
 stickman = Dude(world, -100, -200)
+
+camera = MOAICamera2D.new()
+layer:setCamera(camera)
+
+fitter = MOAICameraFitter2D.new ()
+fitter:setViewport ( viewport )
+fitter:setCamera ( camera )
+fitter:setBounds ( -1000, -64, 1000, 10000 )
+fitter:setMin ( 256 )
+fitter:start ()
+
+anchor = MOAICameraAnchor2D.new()
+anchor:setParent(stickman.camera_prop)
+anchor:setRect(-400, -400, 400, 400)
+fitter:insertAnchor(anchor)
 
 
 function keyboardEvent(key, down)
