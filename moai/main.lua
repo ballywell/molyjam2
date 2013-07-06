@@ -22,14 +22,6 @@ fixture:setFilter(0x02)
 
 stickman = Dude(world, -100, -200)
 
-text:setPos(5, 10)
-text:setDim(90, 80)
-text:setLineHeight(4)
-
--- Add lots of text
-text:addText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ")
-
-
 function keyboardEvent(key, down)
 	if (key == 32 or key == 119 or key == 87) then -- space bar / w / W
 		stickman:jump()
