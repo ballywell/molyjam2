@@ -3,10 +3,8 @@ require 'class'
 
 Platform = class()
 
-function Platform:init(x, y, w, h, t)
+function Platform:init(x, y, t)
 	self.x = x
 	self.y = y
-	self.w = w
-	self.h = h
 	self.text = t
 end

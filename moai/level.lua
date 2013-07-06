@@ -14,14 +14,14 @@ function Level:init(layer, world)
 	font = MOAIFont.new ()
 	font:loadFromTTF ( 'WalterTurncoat.ttf', charcodes, 16, 163 )
 	
-	self:addPlatform(-100, -50, 0, 0, "welcome") -- WELCOME
-	self:addPlatform(-500, 15, 500, 40, "to")
+	self:addPlatform(-100, -50, "welcome") -- WELCOME
+	self:addPlatform(-500, 15, "to")
 	
 	self.buildPlatforms(layer, world)
 end
 
-function Level:addPlatform(x, y, w, h, text)
-	part = Platform(x, y, w, h, text) -- WELCOME
+function Level:addPlatform(x, y, text)
+	part = Platform(x, y, text) -- WELCOME
 	table.insert(parts, part)
 end
 
@@ -35,7 +35,7 @@ function Level:buildPlatforms()
 		textbox:setRect ( v.x, v.y, v.x + 1000, v.y + 1000 )
 		
 		num1, num2, num3, num4 = textbox:getStringBounds(1, 1000)
-		print(num1, num2, num3, num4)
+		--print(num1, num2, num3, num4)
 		textbox:setRect ( num1, num2, num3 + 2, num4 + 2)
 		
 		layer:insertProp ( textbox )
