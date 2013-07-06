@@ -27,15 +27,21 @@ end
 
 function Level:buildPlatforms()
 	for i, v in pairs(parts) do
-		fixture = worldBody:addRect(v.x, v.y, v.w, v.h)
-		fixture:setFilter(0x02)
 		
 		textbox = MOAITextBox.new ()
 		textbox:setString ( v.text )
 		textbox:setFont ( font )
 		textbox:setTextSize ( 12 )
-		textbox:setRect ( v.x, v.y, v.w, v.h )
+		textbox:setRect ( v.x, v.y, v.x + 1000, v.y + 1000 )
+		
+		num1, num2, num3, num4 = textbox:getStringBounds(1, 1000)
+		print(num1, num2, num3, num4)
+		textbox:setRect ( num1, num2, num3 + 2, num4 + 2)
+		
 		layer:insertProp ( textbox )
+		
+		fixture = worldBody:addRect(num1, num2, num3, num4)
+		fixture:setFilter(0x02)
 	end	
 end
 
