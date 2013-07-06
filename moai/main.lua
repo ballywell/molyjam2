@@ -16,7 +16,7 @@ world:setUnitsToMeters(.1)
 world:start()
 layer:setBox2DWorld(world)
 
-tutorial = Level(world)
+tutorial = Level(layer, world)
 
 stickman = Dude(world, -100, -200)
 
