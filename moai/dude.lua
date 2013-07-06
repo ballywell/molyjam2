@@ -62,6 +62,11 @@ function Dude:jump()
 end
 
 function Dude:update()
+	local curX
+	local curY
+	local curDX
+	local curDY
+
 	curX, curY = self.body:getPosition()
 	if self.move_dir.left then
 		self.body:setTransform(curX-2, curY)
@@ -69,6 +74,15 @@ function Dude:update()
 	if self.move_dir.right then
 		self.body:setTransform(curX+2, curY)
 	end
+
+	curDX, curDY = self.body:getLinearVelocity()
+	if not (lcontact or rcontact) then
+		if curDY < -10 and curDY > -15 then
+			self.body:applyLinearImpulse(0, 50)
+		end
+	end
+
+
 	self.body:setAwake(true)
 end
 
