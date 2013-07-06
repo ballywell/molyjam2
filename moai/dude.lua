@@ -15,6 +15,11 @@ function Dude:init(world, x, y)
 	self.lsensor:setSensor()
 	self.rsensor:setSensor()
 
+	self.camera_prop = MOAIProp2D.new()
+	self.cameraX = y
+	self.cameraY = x
+	--self.camera_prop:moveLoc(x, y, 0.2)
+
 	self.move_dir = {}
 
 	self.lsensor:setCollisionHandler(handleLCollision, MOAIBox2DArbiter.BEGIN + MOAIBox2DArbiter.END)
@@ -84,6 +89,12 @@ function Dude:update()
 
 
 	self.body:setAwake(true)
+
+	print("self.cameraX" .. tostring(self.cameraX))
+	print("curX" .. tostring(curX))
+	print("self.cameraY" .. tostring(self.cameraY))
+	print("curY" .. tostring(curY))
+	self.camera_prop:setLoc(curX+200, curY+100)
 end
 
 function handleLCollision(phase, a, b, arbiter)
