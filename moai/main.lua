@@ -17,24 +17,23 @@ layer:setBox2DWorld(world)
 
 worldBody = world:addBody(MOAIBox2DBody.STATIC)
 fixture = worldBody:addRect(-500, 15, 500, 20)
+fixture = worldBody:addRect(-100, -50, 0, 0) -- WELCOME
 fixture:setFilter(0x02)
 
 stickman = Dude(world, -100, -200)
 
 
 function keyboardEvent(key, down)
-	if key == 119 then -- w
+	if (key == 32 or key == 119 or key == 87) then -- space bar / w / W
 		stickman:jump()
 
-	elseif key == 114 then -- r
-
-	elseif key == 97 then -- a
+	elseif (key == 97 or key == 65) then -- a / A / left arrow
 		if down then
 			stickman:move('left')
 		else
 			stickman:unMove('left')
 		end
-	elseif key == 115 then -- s
+	elseif (key == 100 or key == 68) then -- d / D / right arrow
 		if down then
 			stickman:move('right')
 		else
