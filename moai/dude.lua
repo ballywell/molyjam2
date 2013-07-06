@@ -27,7 +27,7 @@ function Dude:move(dir)
 	else
 		self.move_dir['right'] = true
 	end
-	self:setDir()
+--	self:setDir()
 end
 
 function Dude:unMove(dir)
@@ -36,29 +36,40 @@ function Dude:unMove(dir)
 	else
 		self.move_dir['right'] = nil
 	end
-	self:setDir()
+--	self:setDir()
 end
 
-function Dude:setDir()
-	velX, velY = self.body:getLinearVelocity()
-	if self.move_dir.left then
-		self.body:setLinearVelocity(-50, velY)
-		self.rect:setFriction(0)
-	elseif self.move_dir.right then
-		self.body:setLinearVelocity(50, velY)
-		self.rect:setFriction(0)
-	else
-		self.body:setLinearVelocity(0, velY)
-		self.rect:setFriction(0.5)
-	end
-end
+--function Dude:setDir()
+--	velX, velY = self.body:getLinearVelocity()
+--	if self.move_dir.left then
+--		self.body:setLinearVelocity(-50, velY)
+--		self.rect:setFriction(0)
+--	elseif self.move_dir.right then
+--		self.body:setLinearVelocity(50, velY)
+--		self.rect:setFriction(0)
+--	else
+--		self.body:setLinearVelocity(0, velY)
+--		self.rect:setFriction(0.5)
+--	end
+--end
 
 function Dude:jump()
 	if lcontact or rcontact then
 		velX, velY = self.body:getLinearVelocity()
---		self.body:setLinearVelocity(velX, -100)
-		self.body:applyLinearImpulse(0, -50)
+		self.body:setLinearVelocity(velX, -50)
+		self.body:applyLinearImpulse(0, -100)
 	end
+end
+
+function Dude:update()
+	curX, curY = self.body:getPosition()
+	if self.move_dir.left then
+		self.body:setTransform(curX-2, curY)
+	end
+	if self.move_dir.right then
+		self.body:setTransform(curX+2, curY)
+	end
+	self.body:setAwake(true)
 end
 
 function handleLCollision(phase, a, b, arbiter)

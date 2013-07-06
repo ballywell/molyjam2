@@ -10,8 +10,8 @@ layer:setViewport(viewport)
 MOAISim.pushRenderPass(layer)
 
 world = MOAIBox2DWorld.new()
-world:setGravity(0, 10)
-world:setUnitsToMeters(2)
+world:setGravity(0, 20)
+world:setUnitsToMeters(.1)
 world:start()
 layer:setBox2DWorld(world)
 
@@ -43,4 +43,20 @@ function keyboardEvent(key, down)
 	end
 end
 
-MOAIInputMgr.device.keyboard:setCallback(keyboardEvent)
+
+function main()
+	MOAIInputMgr.device.keyboard:setCallback(keyboardEvent)
+
+	mainThread = MOAIThread.new()
+
+	mainThread:run(
+	function()
+	while(true) do
+		coroutine.yield()
+		stickman:update()
+	end
+end
+)
+end
+
+main()
