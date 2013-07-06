@@ -1,4 +1,5 @@
 require 'dude'
+require 'level'
 
 MOAISim.openWindow("foo", 1280, 720)
 viewport = MOAIViewport.new()
@@ -15,10 +16,7 @@ world:setUnitsToMeters(.1)
 world:start()
 layer:setBox2DWorld(world)
 
-worldBody = world:addBody(MOAIBox2DBody.STATIC)
-fixture = worldBody:addRect(-500, 15, 500, 20)
-fixture = worldBody:addRect(-100, -50, 0, 0) -- WELCOME
-fixture:setFilter(0x02)
+tutorial = Level(world)
 
 stickman = Dude(world, -100, -200)
 
