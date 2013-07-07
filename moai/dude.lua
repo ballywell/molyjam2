@@ -35,6 +35,13 @@ function Dude:init(layer, world, x, y)
 	sprite:setIndex ( 1 ) -- show the first image in the deck
 	
 	layer:insertProp(sprite)
+	
+	uvTransform = MOAITransform2D.new ()
+	uvTransform:moveLoc ( x, y, 1)
+	uvTransform:moveScl ( 1, 1, 1 )
+	
+	sprite:setUVTransform(uvTransform)
+	
 end
 
 function Dude:move(dir)
