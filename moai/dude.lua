@@ -5,7 +5,7 @@ rcontact = nil
 
 Dude = class()
 
-function Dude:init(world, x, y)
+function Dude:init(layer, world, x, y)
 	self.body = world:addBody(MOAIBox2DBody.DYNAMIC)
 	self.rect = self.body:addRect(-10, -10, 10, 10)
 	self.body:setFixedRotation()
@@ -24,6 +24,17 @@ function Dude:init(world, x, y)
 
 	self.lsensor:setCollisionHandler(handleLCollision, MOAIBox2DArbiter.BEGIN + MOAIBox2DArbiter.END)
 	self.rsensor:setCollisionHandler(handleRCollision, MOAIBox2DArbiter.BEGIN + MOAIBox2DArbiter.END)
+	
+	spriteSheet = MOAITileDeck2D:new ()
+	spriteSheet:setTexture ( "images/Run_SPRITE_v1.png" )
+	spriteSheet:setSize ( 5, 1 )
+	spriteSheet:setRect ( -40, 30, 40, -30 )
+	
+	sprite = MOAIProp2D.new ()
+	sprite:setDeck ( spriteSheet )
+	sprite:setIndex ( 1 ) -- show the first image in the deck
+	
+	layer:insertProp(sprite)
 end
 
 function Dude:move(dir)
