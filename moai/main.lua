@@ -18,7 +18,7 @@ layer:setBox2DWorld(world)
 
 tutorial = Level(layer, world)
 
-stickman = Dude(layer, world, 90, 450)
+stickman = Dude(layer, world, 40, 450)
 
 camera = MOAICamera2D.new()
 layer:setCamera(camera)

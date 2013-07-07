@@ -51,7 +51,9 @@ function Level:buildPlatforms()
 		textbox:setString ( v.text )
 		textbox:setFont ( font )
 		textbox:setTextSize ( 60 )
-		textbox:setRect ( v.x, v.y, v.x + 1000, v.y + 1000 )
+		if v.x and v.y then
+			textbox:setRect ( v.x, v.y, v.x + 1000, v.y + 1000 )
+			end
 		
 		local num1 = 0
 		local num2 = 0
