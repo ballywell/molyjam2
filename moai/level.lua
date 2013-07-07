@@ -1,5 +1,8 @@
 require 'class'
 require 'platform'
+require 'string'
+require 'string_split'
+
 
 part = nil
 parts = {}
@@ -13,11 +16,25 @@ function Level:init(layer, world)
 	charcodes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-'
 	font = MOAIFont.new ()
 	font:loadFromTTF ( 'WalterTurncoat.ttf', charcodes, 16, 163 )
+	bitmapFontReader = MOAIBitmapFontReader.new()
+	bitmapFontReader:loadPage('FontVerdana18.png', charcodes,16)
+	font:setReader(bitmapFontReader)
 	
 	self:addPlatform(-100, -50, "welcome") -- WELCOME
 	self:addPlatform(-500, 15, "to")
+
+	lines = io.lines('platforms.ini')
+	for line in lines do
+		parsed = genPlatform(line)
+		self:addPlatform(tonumber(parsed[1]), tonumber(parsed[2]), tonumber(parsed[3]))
+	end
 	
 	self.buildPlatforms(layer, world)
+end
+
+function genPlatform(line)
+	sp = line:split('	')
+	return sp
 end
 
 function Level:addPlatform(x, y, text)
