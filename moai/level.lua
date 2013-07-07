@@ -18,8 +18,8 @@ function Level:init(layer, world)
 	font = MOAIFont.new ()
 	font:loadFromTTF ( 'WalterTurncoat.ttf', charcodes, 16, 163 )
 	
-	self:addPlatform(-100, -50, "welcome") -- WELCOME
-	self:addPlatform(-500, 15, "to")
+	--self:addPlatform(-100, -50, "welcome") -- WELCOME
+	--self:addPlatform(-500, 15, "to")
 
 	lines = io.lines('platforms.ini')
 	for line in lines do
@@ -61,11 +61,11 @@ function Level:buildPlatforms()
 		num1, num2, num3, num4 = textbox:getStringBounds(1, 1000)
 		--print(num1, num2, num3, num4)
 		if num1 and num2 and num3 and num4 then
-			textbox:setRect ( num1, num2, num3 + 2, num4 + 2)
+			textbox:setRect ( num1, num2, num3 + 4, num4 + 4)
 		
 			layer:insertProp ( textbox )
 			
-			fixture = worldBody:addRect(num1, num2, num3, num4)
+			fixture = worldBody:addRect(num1, num2, num3 + 4, num4 + 4)
 			fixture:setFilter(0x02)
 		else
 			print("ERROR: " .. tostring(v.text))

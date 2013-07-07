@@ -32,7 +32,7 @@ fitter:start ()
 
 anchor = MOAICameraAnchor2D.new()
 anchor:setParent(stickman.camera_prop)
-anchor:setRect(-50, -250, 50, 150)
+anchor:setRect(-640, -360, 640, 360)
 fitter:insertAnchor(anchor)
 
 
