@@ -16,7 +16,7 @@ function Level:init(layer, world)
 	
 	charcodes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-'
 	font = MOAIFont.new ()
-	font:loadFromTTF ( 'WalterTurncoat.ttf', charcodes, 16, 163 )
+	font:loadFromTTF ( 'WalterTurncoat.ttf', charcodes, 60, 163 )
 	
 	--self:addPlatform(-100, -50, "welcome") -- WELCOME
 	--self:addPlatform(-500, 15, "to")
@@ -50,7 +50,7 @@ function Level:buildPlatforms()
 		textbox = MOAITextBox.new ()
 		textbox:setString ( v.text )
 		textbox:setFont ( font )
-		textbox:setTextSize ( 12 )
+		textbox:setTextSize ( 60 )
 		textbox:setRect ( v.x, v.y, v.x + 1000, v.y + 1000 )
 		
 		local num1 = 0
