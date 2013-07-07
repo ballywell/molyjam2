@@ -30,17 +30,18 @@ function Dude:init(layer, world, x, y)
 	spriteSheet:setSize ( 5, 1 )
 	spriteSheet:setRect ( -40, 30, 40, -30 )
 	
-	sprite = MOAIProp2D.new ()
-	sprite:setDeck ( spriteSheet )
-	sprite:setIndex ( 1 ) -- show the first image in the deck
+	self.sprite = MOAIProp2D.new ()
+	self.sprite:setDeck ( spriteSheet )
+	self.sprite:setIndex ( 1 ) -- show the first image in the deck
+	self.sprite:setParent(self.body)
 	
-	layer:insertProp(sprite)
+	layer:insertProp(self.sprite)
 	
-	uvTransform = MOAITransform2D.new ()
-	uvTransform:moveLoc ( x, y, 1)
-	uvTransform:moveScl ( 1, 1, 1 )
+	self.uvTransform = MOAITransform2D.new ()
+	self.uvTransform:moveLoc ( x, y, 1)
+	--uvTransform:moveScl ( 1, 1, 1 )
 	
-	sprite:setUVTransform(uvTransform)
+	self.sprite:setUVTransform(self.uvTransform)
 	
 end
 
@@ -109,6 +110,11 @@ function Dude:update()
 	self.body:setAwake(true)
 
 	self.camera_prop:setLoc(curX+200, curY+100)
+
+	self.uvTransform = MOAITransform2D.new ()
+	self.uvTransform:moveLoc ( curX, curY, 1)
+	
+	self.sprite:setUVTransform(self.uvTransform)
 end
 
 function handleLCollision(phase, a, b, arbiter)
